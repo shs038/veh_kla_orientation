@@ -29,22 +29,24 @@ del kla_df['chr']
 #function for counting orientations
 ```
 def count_orientation(motif_orientation):
-    *input:a pandas dataframe contains motifs orientation data*
-    *output:a 3 rows pandas dataframe contains counts of each orientation of each motifs*
+    '''
+    input:a pandas dataframe contains motifs orientation data
+    output:a 3 rows pandas dataframe contains counts of each orientation of each motifs
+    '''
     motifs = motif_orientation.columns.values #save motifs identity 
-    *create a zeros matrix to sotre future orientation count data*
+    #create a zeros matrix to sotre future orientation count data
     zero_data = np.zeros((3,motif_orientation.shape[1]),dtype=np.int)
-    *convert zeros matrix to zeros dataframe*
+    #convert zeros matrix to zeros dataframe
     count_frame = pd.DataFrame(zero_data, columns=motifs)
     count_frame.index=['+','-','?']
-    *loop to count the orientations of all motifs*
+    #loop to count the orientations of all motifs
     for i in range (motif_orientation.shape[1]):
-        one_motif=motif_orientation.ix[:,i].values*retrieve orientations of one motif*
-        one_motif=list(one_motif)*convert to list*
-        c=Counter(one_motif)*count each orientation*
-        c=dict(c)*convert to dictionary*
-        c=pd.DataFrame.from_dict(c,orient='index')*convert to dataframe*
-        count_frame.ix[:,i]=c.ix[:,0]*store orientation count in zeros dataframe*
+        one_motif=motif_orientation.ix[:,i].values#retrieve orientations of one motif
+        one_motif=list(one_motif)#convert to list
+        c=Counter(one_motif)#count each orientation
+        c=dict(c)#convert to dictionary
+        c=pd.DataFrame.from_dict(c,orient='index')#convert to dataframe
+        count_frame.ix[:,i]=c.ix[:,0]#store orientation count in zeros dataframe
     return count_frame
 ```
 #count orientation
@@ -60,16 +62,18 @@ kla_orientation = kla_orientation.T
 #count how many times two motifs that co-occur with each other both have sense orientation 
 ```
 def count_both_sense(motif_orientation):
-    *input:a pandas dataframe contains motifs orientation data*
-    *output:a pandas dataframe contains how many times each pair of motifs both have + orientation.*
-    motifs = motif_orientation.columns.values *save motifs identity*
-    *creaty a zeros matrix to sotre future orientation count data*
+    ...
+    input:a pandas dataframe contains motifs orientation data
+    output:a pandas dataframe contains how many times each pair of motifs both have + orientation.
+    ...
+    motifs = motif_orientation.columns.values #save motifs identity
+    #creaty a zeros matrix to sotre future orientation count data
     zero_data = np.zeros((motif_orientation.shape[1],motif_orientation.shape[1]),dtype=np.int)
-    *conver zeros matrix to zeros dataframe*
+    #conver zeros matrix to zeros dataframe
     count_frame = pd.DataFrame(zero_data, columns=motifs)
     count_frame.index=motifs
     for i in range (motif_orientation.shape[1]-1):
-        *find the loci where the motif occur with sense orientation*
+        #find the loci where the motif occur with sense orientation
         logical_col_i=motif_orientation.ix[:,i]=='+' 
         for j in range (i+1,motif_orientation.shape[1]):
             #find the loci where the motif occur with sense orientation
@@ -284,10 +288,9 @@ kaa=kla_cooccur_antisense_antisense.ix[:,1].values
 kla_all_orientation=np.array([kss,ksa,kas,kaa])
 kla_all_orientation=kla_all_orientation.T
 ```
-# Given a set of loci L where motif J is in a given orientation O, does that subset of L where 
-## motf Z is present ahve a bias towards +/-
-## Fisher's  exact test 
-## Null hypothesis: orientation of motif J and that of motif Z are independent at loci L.
+#Chi Square test
+**Given a set of loci L where motif J is in a given orientation O, does that subset of L where motf Z is present ahve a bias towards +/-**
+**Null hypothesis: orientation of motif J and that of motif Z are independent at loci L.**
 ```
 def Chisquare_test(orientation):
     Chi_array=np.array(np.zeros((1,4),dtype=np.int))
