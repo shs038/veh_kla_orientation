@@ -1,3 +1,4 @@
+'''
 import numpy as np
 import pandas as pd
 from matplotlib import pyplot as plt
@@ -6,6 +7,7 @@ import scipy
 from scipy import stats
 from collections import Counter
 %matplotlib inline
+'''
 #read in data
 motif_orientation_df = pd.read_csv('/home/jtao/for_shengnan/motif_strand_C57BL6J.tsv', sep='\t')
 motif_orientation_df.index = motif_orientation_df['ID'].values
