@@ -289,7 +289,7 @@ kla_all_orientation=np.array([kss,ksa,kas,kaa])
 kla_all_orientation=kla_all_orientation.T
 ```
 #Chi Square test
-**Given a set of loci L where motif J is in a given orientation O, does that subset of L where motf Z is present ahve a bias towards +/-**
+**Given a set of loci L where motif J is in a given orientation O, does that subset of L where motf Z is present have a bias towards +/-**
 **Null hypothesis: orientation of motif J and that of motif Z are independent at loci L.**
 ```
 def Chisquare_test(orientation):
