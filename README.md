@@ -54,10 +54,34 @@ def count_orientation(motif_orientation):
 veh_orientation=count_orientation(veh_df)
 kla_orientation=count_orientation(kla_df)
 ```
-#transpose the count dataframe 
+#transpose the count dataframe  and replace NAN with zero
 ```
 veh_orientation = veh_orientation.T
 kla_orientation = kla_orientation.T
+veh_orientation=veh_orientation.fillna(value=0)
+kla_orientation=kla_orientation.fillna(value=0)
+```
+#plot orientation counts
+```
+sns.distplot(veh_orientation['+'])
+plt.ylabel('Frequency')
+plt.xlabel('+')
+plt.title('veh + count') 
+plt.show()
+sns.distplot(veh_orientation['-'])
+plt.ylabel('Frequency')
+plt.xlabel('-')
+plt.title('veh - count') 
+plt.show()
+sns.distplot(kla_orientation['+'])
+plt.ylabel('Frequency')
+plt.xlabel('+')
+plt.title('kla + count') 
+plt.show()
+sns.distplot(kla_orientation['-'])
+plt.ylabel('Frequency')
+plt.xlabel('-')
+plt.title('kla - count') 
 ```
 #count how many times two motifs that co-occur with each other both have sense orientation 
 ```
