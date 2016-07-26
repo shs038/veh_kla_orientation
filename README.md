@@ -20,25 +20,27 @@ del veh_df['chr']
 kla_df=motif_orientation_df[motif_orientation_df['Factors'].str.contains('c57bl6_atac_kla')]
 del kla_df['Factors']
 del kla_df['chr']
+#function for counting orientations
 def count_orientation(motif_orientation):
-    '''
-    input:a pandas dataframe contains motifs orientation data
-    output:a 3 rows pandas dataframe contains counts of each orientation of each motifs
-    '''
+    *input:a pandas dataframe contains motifs orientation data*
+    *output:a 3 rows pandas dataframe contains counts of each orientation of each motifs*
+```
     motifs = motif_orientation.columns.values #save motifs identity 
-    #creaty a zeros matrix to sotre future orientation count data
+    *creaty a zeros matrix to sotre future orientation count data*
     zero_data = np.zeros((3,motif_orientation.shape[1]),dtype=np.int)
-    # conver zeros matrix to zeros dataframe
+    *conver zeros matrix to zeros dataframe*
     count_frame = pd.DataFrame(zero_data, columns=motifs)
     count_frame.index=['+','-','?']
-    for i in range (motif_orientation.shape[1]):#loop to count the orientations of all motifs 
-        one_motif=motif_orientation.ix[:,i].values#retrieve orientations of one motif
-        one_motif=list(one_motif)#convert to list
-        c=Counter(one_motif)#count each orientation
-        c=dict(c)#convert to dictionary
-        c=pd.DataFrame.from_dict(c,orient='index')#convert to dataframe
-        count_frame.ix[:,i]=c.ix[:,0]#store orientation count in zeros dataframe 
+    *loop to count the orientations of all motifs*
+    for i in range (motif_orientation.shape[1]):
+        one_motif=motif_orientation.ix[:,i].values*retrieve orientations of one motif*
+        one_motif=list(one_motif)*convert to list*
+        c=Counter(one_motif)*count each orientation*
+        c=dict(c)*convert to dictionary*
+        c=pd.DataFrame.from_dict(c,orient='index')*convert to dataframe*
+        count_frame.ix[:,i]=c.ix[:,0]*store orientation count in zeros dataframe*
     return count_frame
+```
 #count orientation
 veh_orientation=count_orientation(veh_df)
 kla_orientation=count_orientation(kla_df)
