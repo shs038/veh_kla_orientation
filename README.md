@@ -293,6 +293,48 @@ kla_cooccur_antisense_antisense=kla_cooccur_orientation[kla_cooccur_orientation[
 kla_cooccur_sense_antisense=kla_cooccur_orientation[kla_cooccur_orientation['Orientation']=='+/-']
 kla_cooccur_antisense_sense=kla_cooccur_orientation[kla_cooccur_orientation['Orientation']=='-/+']
 ```
+#plot normalized count of each pair of orientations for veh and kla
+```
+sns.distplot(veh_cooccur_sense_sense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('veh ++') 
+plt.show()
+sns.distplot(veh_cooccur_antisense_antisense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('veh --') 
+plt.show()
+sns.distplot(veh_cooccur_sense_antisense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('veh +-') 
+plt.show()
+sns.distplot(veh_cooccur_antisense_sense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('veh -+') 
+plt.show()
+sns.distplot(kla_cooccur_sense_sense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('kla ++') 
+plt.show()
+sns.distplot(kla_cooccur_antisense_antisense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('kla --') 
+plt.show()
+sns.distplot(kla_cooccur_sense_antisense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('kla +-') 
+plt.show()
+sns.distplot(kla_cooccur_antisense_sense['Normalized_Count'])
+plt.ylabel('Frequency')
+plt.xlabel('Normalized_Count')
+plt.title('kla -+') 
+```
 #veh orientation array for chi square test
 ```
 motifpair=veh_cooccur_sense_sense.index.values
